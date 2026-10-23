@@ -1,0 +1,324 @@
+.gui {
+  --gui-ink: #10233a;
+  --gui-muted: #4d647a;
+  --gui-line: rgba(16, 35, 58, 0.12);
+  --gui-panel: rgba(255, 255, 255, 0.72);
+  --gui-accent: #0f766e;
+  --gui-accent-soft: #ccfbf1;
+  --gui-sky: #dbeafe;
+  --gui-sand: #f4efe6;
+  --gui-stock: #1d4ed8;
+  --gui-radius: 18px;
+  --gui-font: var(--font-gui-sans), "Segoe UI", sans-serif;
+  --gui-display: var(--font-gui-display), Georgia, serif;
+
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  color: var(--gui-ink);
+  font-family: var(--gui-font);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #b9e4ff 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #c7f5e8 0%, transparent 50%),
+    linear-gradient(165deg, #eef5fb 0%, #f7f3ea 48%, #e8f1f4 100%);
+}
+
+.gui__header {
+  max-width: 42rem;
+  animation: gui-rise 0.7s ease both;
+}
+
+.gui__brand {
+  margin: 0;
+  font-family: var(--gui-display);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.gui__lede {
+  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  color: var(--gui-muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  animation: gui-rise 0.8s ease 0.08s both;
+}
+
+.gui__meta {
+  margin: 0.65rem 0 0;
+  color: var(--gui-muted);
+  font-size: 0.85rem;
+}
+
+.gui__meta a {
+  color: var(--gui-accent);
+  text-underline-offset: 3px;
+}
+
+.gui__build {
+  margin: 0.55rem 0 0;
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 10px;
+  background: rgba(15, 118, 110, 0.1);
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  color: var(--gui-accent);
+  font-size: 0.82rem;
+}
+
+.gui__build code {
+  font-family: var(--gui-font);
+  font-weight: 700;
+}
+
+.gui__hint {
+  margin: 0.55rem 0 0;
+  max-width: 36rem;
+  color: var(--gui-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.gui__prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  animation: gui-rise 0.8s ease 0.14s both;
+}
+
+.gui__chip {
+  border: 1px solid var(--gui-line);
+  background: var(--gui-panel);
+  color: var(--gui-ink);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.gui__chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: white;
+}
+
+.gui__chip:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.gui__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+  padding-right: 0.25rem;
+  min-height: 12rem;
+}
+
+.gui__empty {
+  margin: auto 0;
+  color: var(--gui-muted);
+}
+
+.gui__message {
+  max-width: min(36rem, 100%);
+  animation: gui-rise 0.45s ease both;
+}
+
+.gui__message--user {
+  margin-left: auto;
+}
+
+.gui__role {
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gui-muted);
+}
+
+.gui__parts {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.gui__text {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--gui-radius);
+  background: var(--gui-panel);
+  border: 1px solid var(--gui-line);
+  line-height: 1.5;
+  backdrop-filter: blur(8px);
+}
+
+.gui__message--user .gui__text {
+  background: #10233a;
+  color: #f5f8fc;
+  border-color: transparent;
+}
+
+.gui__loading,
+.gui__error {
+  padding: 0.85rem 1rem;
+  border-radius: var(--gui-radius);
+  border: 1px dashed var(--gui-line);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--gui-muted);
+}
+
+.gui__error {
+  border-style: solid;
+  border-color: #fecaca;
+  color: #991b1b;
+  background: #fef2f2;
+}
+
+.gui__composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.65rem;
+  position: sticky;
+  bottom: 0.5rem;
+  padding: 0.65rem;
+  border-radius: calc(var(--gui-radius) + 4px);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--gui-line);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(16, 35, 58, 0.08);
+  animation: gui-rise 0.8s ease 0.18s both;
+}
+
+.gui__composer input {
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.55rem 0.4rem;
+  color: var(--gui-ink);
+}
+
+.gui__composer button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.15rem;
+  background: var(--gui-accent);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.gui__composer button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.gui__composer button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.weather-card,
+.stock-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--gui-radius) + 2px);
+  padding: 1.15rem 1.25rem 1.25rem;
+  border: 1px solid var(--gui-line);
+  animation: gui-card 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.weather-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.55), transparent 50%),
+    linear-gradient(160deg, var(--gui-sky), #ffffff 55%, var(--gui-accent-soft));
+}
+
+.stock-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.5), transparent 45%),
+    linear-gradient(160deg, #dbeafe, #ffffff 60%, #eff6ff);
+}
+
+.weather-card__eyebrow,
+.stock-card__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gui-muted);
+}
+
+.weather-card__title,
+.stock-card__symbol {
+  margin: 0.35rem 0 0;
+  font-family: var(--gui-display);
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
+}
+
+.weather-card__condition {
+  margin: 0.35rem 0 0;
+  color: var(--gui-muted);
+}
+
+.weather-card__temp,
+.stock-card__price {
+  margin: 0.9rem 0 0;
+  font-size: 2.4rem;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.weather-card__temp span,
+.stock-card__price span {
+  margin-left: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--gui-muted);
+}
+
+.stock-card__price {
+  color: var(--gui-stock);
+}
+
+@keyframes gui-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gui-card {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .gui__composer {
+    grid-template-columns: 1fr;
+  }
+
+  .gui__composer button {
+    width: 100%;
+  }
+}

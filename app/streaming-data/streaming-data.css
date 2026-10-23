@@ -1,0 +1,238 @@
+.sd {
+  --sd-ink: #142033;
+  --sd-muted: #5a6b7d;
+  --sd-line: rgba(20, 32, 51, 0.12);
+  --sd-panel: rgba(255, 255, 255, 0.78);
+  --sd-accent: #0f766e;
+  --sd-warn: #b45309;
+  --sd-font: var(--font-gui-sans), "Segoe UI", sans-serif;
+  --sd-display: var(--font-gui-display), Georgia, serif;
+
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 1.1rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  color: var(--sd-ink);
+  font-family: var(--sd-font);
+  background:
+    radial-gradient(1000px 520px at 0% 0%, #c7e8ff 0%, transparent 55%),
+    radial-gradient(800px 420px at 100% 10%, #d9f5e8 0%, transparent 50%),
+    linear-gradient(165deg, #eef5fb 0%, #f7f4ec 55%, #e9f2f4 100%);
+}
+
+.sd__header {
+  max-width: 42rem;
+}
+
+.sd__brand {
+  margin: 0;
+  font-family: var(--sd-display);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.sd__lede,
+.sd__meta {
+  margin: 0.7rem 0 0;
+  color: var(--sd-muted);
+  line-height: 1.5;
+}
+
+.sd__meta a {
+  color: var(--sd-accent);
+}
+
+.sd__toast {
+  justify-self: start;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--sd-line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--sd-accent);
+  font-size: 0.88rem;
+  animation: sd-pop 0.35s ease both;
+}
+
+.sd__toast--warning {
+  color: var(--sd-warn);
+}
+
+.sd__toast--error {
+  color: #b91c1c;
+}
+
+.sd__prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sd__chip,
+.sd__composer button {
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sd__chip {
+  border: 1px solid var(--sd-line);
+  background: var(--sd-panel);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.88rem;
+}
+
+.sd__chip:disabled,
+.sd__composer button:disabled,
+.sd__composer input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sd__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  overflow: auto;
+  min-height: 12rem;
+}
+
+.sd__empty {
+  margin: auto 0;
+  color: var(--sd-muted);
+}
+
+.sd__message {
+  max-width: min(36rem, 100%);
+}
+
+.sd__message--user {
+  margin-left: auto;
+}
+
+.sd__role {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sd-muted);
+}
+
+.sd__role-time {
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.85;
+}
+
+.sd__metadata {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.75rem;
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 14px;
+  border: 1px dashed var(--sd-line);
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 0.82rem;
+  color: var(--sd-muted);
+}
+
+.sd__metadata dt {
+  font-weight: 600;
+}
+
+.sd__metadata dd {
+  margin: 0;
+  color: var(--sd-ink);
+}
+
+.sd__parts {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.sd__text,
+.sd__weather,
+.sd__source,
+.sd__error {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--sd-line);
+  background: var(--sd-panel);
+}
+
+.sd__message--user .sd__text {
+  background: #142033;
+  color: #f4f7fb;
+  border-color: transparent;
+}
+
+.sd__weather {
+  background: linear-gradient(145deg, #e0f2fe, #ffffff 55%, #ccfbf1);
+}
+
+.sd__weather strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--sd-display);
+  font-size: 1.15rem;
+}
+
+.sd__source a {
+  color: var(--sd-accent);
+}
+
+.sd__composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem;
+  padding: 0.65rem;
+  border-radius: 18px;
+  border: 1px solid var(--sd-line);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.sd__composer input {
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  padding: 0.5rem 0.35rem;
+}
+
+.sd__composer button {
+  background: var(--sd-accent);
+  color: white;
+  font-weight: 600;
+  padding: 0.7rem 1.1rem;
+}
+
+.sd__error {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+@keyframes sd-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .sd__composer {
+    grid-template-columns: 1fr;
+  }
+}
